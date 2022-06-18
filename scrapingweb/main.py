@@ -126,14 +126,14 @@ db = mysql.connector.connect(
 )
 cursor = db.cursor()
 # if table doesn't exist, create it
-cursor.execute("CREATE TABLE IF NOT EXISTS sneakers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), price VARCHAR(255), creator VARCHAR(255))")
+cursor.execute("CREATE TABLE IF NOT EXISTS my_sneakers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), price VARCHAR(255), creator VARCHAR(255))")
 print ("Table created successfully")
 # insert data into table
 
 for product in products:
     # if there is error, ignore it
     try:
-        sql = "INSERT INTO sneakers (name, image, price, creator) VALUES (%s, %s, %s, %s)"
+        sql = "INSERT INTO my_sneakers (name, image, price, creator) VALUES (%s, %s, %s, %s)"
         val = (product['name'], product['image'], product['price'], product['creator'])
         cursor.execute(sql, val)
         db.commit()
