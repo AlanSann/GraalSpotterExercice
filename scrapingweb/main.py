@@ -1,8 +1,8 @@
 # Importing the libraries that we will use in our program.
-import time
 import requests
 from bs4 import BeautifulSoup
-import json
+# import json
+import mysql.connector
 
 # The url of the website that we want to scrap and the headers are the headers of the request that we send to the website.
 headers = {
@@ -99,20 +99,47 @@ print(f'Total de {len(all_products_links)} produits')
 
 url = "https://graalspotter.com"
 products = []
-products_numer = 1
+products_number = 1
 for link in all_products_links:
-    print(f'Récupération des informations d\' produit ({products_numer}/{len(all_products_links)})')
+    print(f'Récupération des informations d\' produit ({products_number}/{len(all_products_links)})')
 
     product = get_all_products_from_link(url + link)
 
     if product is not None:
         products.append(product)
 
-    products_numer += 1
+    products_number += 1
     print(f'Fin de la récupération des informations du produit {product["name"]}\n')
 
-# Save the product list in a json file
-print("Sauvegarde des produits dans un fichier json")
-with open('products.json', 'w') as outfile:
-    json.dump(products, outfile)
-    print("Fin de la sauvegarde des produits dans un fichier json")
+# # Save the product list in a json file
+# print("Sauvegarde des produits dans un fichier json")
+# with open('products.json', 'w') as outfile:
+#     json.dump(products, outfile)
+#     print("Fin de la sauvegarde des produits dans un fichier json")
+
+# connect to db 
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="",
+    database="scrapped_sneakers"
+)
+cursor = db.cursor()
+# if table doesn't exist, create it
+cursor.execute("CREATE TABLE IF NOT EXISTS sneakers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), image VARCHAR(255), price VARCHAR(255), creator VARCHAR(255))")
+print ("Table created successfully")
+# insert data into table
+
+for product in products:
+    # if there is error, ignore it
+    try:
+        sql = "INSERT INTO sneakers (name, image, price, creator) VALUES (%s, %s, %s, %s)"
+        val = (product['name'], product['image'], product['price'], product['creator'])
+        cursor.execute(sql, val)
+        db.commit()
+        print("Data inserted successfully")
+    except:
+        print("Error: unable to insert data")
+# close connection
+db.close()
+print ("Connection closed successfully")
