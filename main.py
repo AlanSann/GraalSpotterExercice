@@ -29,7 +29,7 @@ def get_last_page(address):
     return numbers[-1]
 
 
-def get_all_products_from_page(address):
+def get_all_products_links_from_mainpage(address):
     """
     It takes a URL and returns an array of all the product URLs on that page
 
@@ -87,12 +87,12 @@ def get_all_products_from_link(address):
 last_page = get_last_page(url)
 # Adding the "?page=" to the url so that we can add the page number to the url.
 url = url + "?page="
-# It creates an empty list.
+#empty list to store all the products links
 all_products_links = []
 
 for i in range(1, last_page + 1):
     print(f'Récupération des produits de la page {i}')
-    all_products_links.extend(get_all_products_from_page(url + str(i)))
+    all_products_links.extend(get_all_products_links_from_mainpage(url + str(i)))
     print(f'Fin de la récupération des produits de la page {i}')
 
 print(f'Total de {len(all_products_links)} produits')
@@ -100,9 +100,8 @@ print(f'Total de {len(all_products_links)} produits')
 url = "https://graalspotter.com"
 products = []
 products_numer = 1
-start_time = time.time()
 for link in all_products_links:
-    print(f'Récupération des informations d\' produit ({products_numer}/{len(all_products_links)}). Temps restant estimée à : {round((time.time() - start_time) / products_numer * (len(all_products_links) - products_numer))} secondes')
+    print(f'Récupération des informations d\' produit ({products_numer}/{len(all_products_links)})')
 
     product = get_all_products_from_link(url + link)
 
