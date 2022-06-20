@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class my_sneakers(models.Model):
+class MySneakers(models.Model):
     id = models.AutoField(
     primary_key=True
     )
@@ -16,7 +16,7 @@ class my_sneakers(models.Model):
     def _str_(self):
         return self.name
 
-class website_sneakers(models.Model):
+class WebsiteSneakers(models.Model):
     id = models.AutoField(
     primary_key=True
     )

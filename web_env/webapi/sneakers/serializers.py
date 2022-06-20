@@ -1,15 +1,15 @@
 from rest_framework import serializers
-from .models import my_sneakers
-from .models import website_sneakers
+from .models import MySneakers
+from .models import WebsiteSneakers
 
-class website_sneakersSerializer(serializers.ModelSerializer):
+class WebsiteSneakersSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=255, required=True)
     image = serializers.CharField(max_length=255)
     price = serializers.CharField(max_length=255, required=True)
     creator = serializers.CharField(max_length=255, required=True)
 
     def create(self, validated_data):
-        return website_sneakers.objects.create(
+        return WebsiteSneakers.objects.create(
             name=validated_data.get('name'),
             image=validated_data('image'),
             price=validated_data.get('price'),
@@ -25,13 +25,13 @@ class website_sneakersSerializer(serializers.ModelSerializer):
         return instance
 
     class Meta:
-        model = website_sneakers
+        model = WebsiteSneakers
         fields = ('id', 'name', 'image', 'price', 'creator')
 
 
 
 
-class my_sneakersSerializer(serializers.ModelSerializer):
+class MySneakersSerializer(serializers.ModelSerializer):
     # name = serializers.CharField(max_length=255, required=True)
     # image = serializers.CharField(max_length=255)
     # price = serializers.CharField(max_length=255, required=True)
@@ -54,5 +54,5 @@ class my_sneakersSerializer(serializers.ModelSerializer):
     #     return instance
 
     class Meta:
-        model = my_sneakers
+        model = MySneakers
         fields = ('id', 'name', 'image', 'price', 'creator')
