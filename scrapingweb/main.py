@@ -121,7 +121,8 @@ for link in all_products_links:
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="",
+    passwd="root",
+    port="8889",
     database="scrapped_sneakers"
 )
 cursor = db.cursor()
@@ -131,7 +132,7 @@ print ("Table created successfully")
 # insert data into table
 
 for product in products:
-    # if there is error, ignore it
+
     try:
         sql = "INSERT INTO my_sneakers (name, image, price, creator) VALUES (%s, %s, %s, %s)"
         val = (product['name'], product['image'], product['price'], product['creator'])
