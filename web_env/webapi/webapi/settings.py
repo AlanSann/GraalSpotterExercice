@@ -27,11 +27,23 @@ SECRET_KEY = 'django-insecure-0lmu@43&+r(7yo^abjpe3ejfd(s%lgv$h3l(!_rjdu5-xs_@n^
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+CORS_ALLOWED_HEADERS = ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With', 'X-CSRFToken']
+CORS_ALLOWED_ORIGINS = ['*']
 
 
 # Application definition
-
+CORS_ALLOW_CREDENTIALS = False
+ALLOWED_HOSTS = [
+    "127.0.0.1", 
+]
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1", 
+]
+CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
+    "corsheaders",
     'sneakers',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,14 +55,17 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'webapi.urls'
 
