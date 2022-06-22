@@ -33,6 +33,9 @@ export default App; */
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import Home from "./pages/Home";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -43,7 +46,7 @@ function App() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:8000/search/"
+        "https://disease.sh/v3/covid-19/countries"
       );
       setPosts(response.data);
       setLoading(false);
@@ -54,6 +57,8 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
+      <Home />
       <h3>Search Filter</h3>
       <input
         style={{ width: "30%", height: "25px" }}
@@ -69,15 +74,42 @@ function App() {
             if (searchTitle === "") {
               return value;
             } else if (
-              value.name.toLowerCase().includes(searchTitle.toLowerCase())
+              value.country.toLowerCase().includes(searchTitle.toLowerCase())
             ) {
               return value;
             }
           })
-          .map((item) => <h5 key={item.id}>{item.name}</h5>)
+          .map((item) => <h5 key={item.id} >{item.country}</h5>)
       )}
+      <Footer />
     </div>
   );
 }
 
 export default App;
+
+/* function App() {
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(`http://localhost:5000?q=${query}`);
+      setData(res.data);
+    };
+    if (query.length === 0 || query.length > 2) fetchData();
+  }, [query]);
+
+  return (
+    <div className="app">
+        <input
+          className="search"
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value.toLowerCase())}
+        />
+      {<Table data={data} />}
+    </div>
+  );
+}
+
+export default App; */

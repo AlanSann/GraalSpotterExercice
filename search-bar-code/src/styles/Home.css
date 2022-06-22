@@ -34,6 +34,17 @@
     display: flex;
   }
 
+  .shoeImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .shoeImage img {
+    width: 500px;
+    height: 350px;
+  }
+
   
   @media only screen and (max-width: 650px) {
     .home {
