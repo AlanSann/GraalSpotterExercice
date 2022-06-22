@@ -32,6 +32,7 @@ export default App; */
 
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import PostForm from "./Components/PostForm";
 import axios from "axios";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
@@ -59,6 +60,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Home />
+      <PostForm />
       <h3>Search Filter</h3>
       <input
         style={{ width: "30%", height: "25px" }}
