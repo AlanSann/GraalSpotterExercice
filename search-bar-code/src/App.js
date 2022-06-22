@@ -46,7 +46,7 @@ function App() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "https://disease.sh/v3/covid-19/countries"
+        "http://localhost:8000/search/"
       );
       setPosts(response.data);
       setLoading(false);
@@ -74,12 +74,12 @@ function App() {
             if (searchTitle === "") {
               return value;
             } else if (
-              value.country.toLowerCase().includes(searchTitle.toLowerCase())
+              value.name.toLowerCase().includes(searchTitle.toLowerCase())
             ) {
               return value;
             }
           })
-          .map((item) => <h5 key={item.id} >{item.country}</h5>)
+          .map((item) => <h5 key={item.id} >{item.name}</h5>)
       )}
       <Footer />
     </div>
