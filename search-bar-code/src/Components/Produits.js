@@ -32,6 +32,7 @@ function Produits() {
               ) {
                 return value;
               }
+              return false;
             })
             .map((item) => (
               <div className="displayItem" key={item.id}>
