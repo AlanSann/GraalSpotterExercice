@@ -4,14 +4,12 @@ import axios from "axios";
 function Produits() {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [searchTitle, setSearchTitle] = useState("");
+  const [searchTitle] = useState("");
 
   useEffect(() => {
     const loadPosts = async () => {
       setLoading(true);
-      const response = await axios.get(
-        "https://disease.sh/v3/covid-19/countries"
-      );
+      const response = await axios.get("http://localhost:8000/sneakers/");
       setPosts(response.data);
       setLoading(false);
     };
@@ -21,25 +19,30 @@ function Produits() {
 
   return (
     <div className="displayProducts">
-        <div className="displayItems">
-      {loading ? (
-        <h4>Loading ...</h4>
-      ) : (
-        posts
-          .filter((value) => {
-            if (searchTitle === "") {
-              return value;
-            } else if (
-              value.country.toLowerCase().includes(searchTitle.toLowerCase())
-            ) {
-              return value;
-            }
-          })
-          .map((item) => <h5 key={item.id} >{item.country}.</h5>)
-      )}
+      <div className="displayItems">
+        {loading ? (
+          <h4>Loading ...</h4>
+        ) : (
+          posts
+            .filter((value) => {
+              if (searchTitle === "") {
+                return value;
+              } else if (
+                value.name.toLowerCase().includes(searchTitle.toLowerCase())
+              ) {
+                return value;
+              }
+            })
+            .map((item) => (
+              <div className="displayItem" key={item.id}>
+                <h5 className="titleSneakers" >Name :{item.name} | Brand : {item.creator} | Price : {item.price}€</h5>
+                <img className="sneakersDB" src={item.image} alt="" />
+              </div>
+            ))
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Produits
+export default Produits;

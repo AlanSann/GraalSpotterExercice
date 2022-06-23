@@ -47,6 +47,7 @@ function SearchBar({ placeholder, data }) {
         <div className="dataResult">
           {filteredData.slice(0, 15).map((value, key) => {
             return (
+              // eslint-disable-next-line react/jsx-no-target-blank
               <a className="dataItem" href={value.link} target="_blank">
                 <p>{value.title} </p>
               </a>
