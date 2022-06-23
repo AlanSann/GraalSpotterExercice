@@ -40,6 +40,7 @@ import Home from "./pages/Home";
 import Connexion from "./pages/Connexion";
 import Inscription from "./pages/Inscription";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Produits from "./Components/Produits";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -71,25 +72,7 @@ function App() {
       </Router>
       <Home />
       <PostForm />
-
-      <div className="displayItems">
-      {loading ? (
-        <h4>Loading ...</h4>
-      ) : (
-        posts
-          .filter((value) => {
-            if (searchTitle === "") {
-              return value;
-            } else if (
-              value.country.toLowerCase().includes(searchTitle.toLowerCase())
-            ) {
-              return value;
-            }
-          })
-          .map((item) => <h5 key={item.id} >{item.country}.</h5>)
-      )}
-      </div>
-
+      <Produits />
       <h3>Search Filter</h3>
       <input
         style={{ width: "30%", height: "25px" }}
