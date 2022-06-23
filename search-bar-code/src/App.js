@@ -37,6 +37,9 @@ import axios from "axios";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
+import Connexion from "./pages/Connexion";
+import Inscription from "./pages/Inscription";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -58,7 +61,14 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" exact component={Home} />
+          <Route path="/Connexion" exact component={Connexion} />
+          <Route path="/Inscription" exact component={Inscription} />
+        </Routes>
+      </Router>
       <Home />
       <PostForm />
       <h3>Search Filter</h3>

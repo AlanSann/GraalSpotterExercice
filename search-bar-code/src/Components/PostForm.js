@@ -41,6 +41,7 @@ function PostForm(props) {
                 <input onChange={(e) => handle(e)} id="price" value={data.price} placeholder="price" type="number"></input>
                 <button>Submit</button>
             </form>
+            
         </div>
     );
 }

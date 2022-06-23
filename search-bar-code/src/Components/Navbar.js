@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/graalSpotterLogo11.png";
 import "../styles/Navbar.css";
 
@@ -13,9 +14,15 @@ function Navbar() {
       <div className="leftSide" id={openLinks ? "open" : "close"}>
         <img src={Logo} />
         <div className="hiddenLinks">
+          <Link to="/"> Home </Link>
+          <Link to="/Connexion"> Connexion </Link>
+          <Link to="/Inscription"> Inscription </Link>
         </div>
       </div>
       <div className="rightSide">
+        <Link to="/"> Home </Link>
+        <Link to="/Connexion"> Connexion </Link>
+        <Link to="/Inscription"> Inscription</Link>
       </div>
     </div>
   );
