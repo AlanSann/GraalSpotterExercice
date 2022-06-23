@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 function PostForm(props) {
-    const url = "http://localhost:8000/search/Create"
+    const url = "http://localhost:8000/sneakers/"
     const [data, setData] = useState ({
         name: "",
         creator: "",
+        image: "",
         price: "",
 
     })
@@ -15,10 +16,17 @@ function PostForm(props) {
         axios.post(url, {
             name: data.name,
             creator: data.creator,
+            image: data.image,
             price: data.price,
         })
         .then(res=> {
             console.log(res.data)
+            setData({
+                name: "",
+                creator: "",
+                image: "",
+                price: "",
+            })
         })
 
     }
@@ -31,13 +39,12 @@ function PostForm(props) {
         console.log(newData)
         
     }
-
-
     return (
         <div>
             <form onSubmit={(e) => submit(e)} >
                 <input onChange={(e) => handle(e)} id="name" value={data.name} placeholder="name" type="text"></input>
                 <input onChange={(e) => handle(e)} id="creator" value={data.creator} placeholder="creator" type="text"></input>
+                <input onChange={(e) => handle(e)} id="image" value={data.image} placeholder="image" type="text"></input>
                 <input onChange={(e) => handle(e)} id="price" value={data.price} placeholder="price" type="number"></input>
                 <button>Submit</button>
             </form>
