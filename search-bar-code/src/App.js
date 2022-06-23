@@ -51,7 +51,7 @@ function App() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "https://disease.sh/v3/covid-19/countries"
+        "http://localhost:8000/search/"
       );
       setPosts(response.data);
       setLoading(false);
@@ -96,7 +96,7 @@ function App() {
           })
           .map((item) =>( 
             <div className="card" key={item.id}>
-              <h5>{item.name}</h5>
+              <h5>Name : {item.name} | Brand : {item.creator} | Price : {item.price}€</h5>
               <img className="imgSneakers" src={item.image} alt=""/>
             </div>
           ))
