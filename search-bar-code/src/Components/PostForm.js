@@ -27,6 +27,8 @@ function PostForm(props) {
                 image: "",
                 price: "",
             })
+            //refresh the page
+            window.location.reload()
         })
 
     }
