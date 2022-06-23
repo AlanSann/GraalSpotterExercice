@@ -90,6 +90,7 @@ function App() {
             ) {
               return value;
             }
+            return false
           })
           .map((item) =>( 
             <div className="card" key={item.id}>
