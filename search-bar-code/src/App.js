@@ -91,7 +91,12 @@ function App() {
               return value;
             }
           })
-          .map((item) => <h5 key={item.id} >{item.name}</h5>)
+          .map((item) =>( 
+            <div className="card" key={item.id}>
+              <h5>{item.name}</h5>
+              <img className="imgSneakers" src={item.image} alt=""/>
+            </div>
+          ))
       )}
       <Footer />
     </div>
