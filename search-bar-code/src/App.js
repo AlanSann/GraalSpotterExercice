@@ -50,7 +50,7 @@ function App() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:8000/search/"
+        "https://disease.sh/v3/covid-19/countries"
       );
       setPosts(response.data);
       setLoading(false);
@@ -71,6 +71,25 @@ function App() {
       </Router>
       <Home />
       <PostForm />
+
+      <div className="displayItems">
+      {loading ? (
+        <h4>Loading ...</h4>
+      ) : (
+        posts
+          .filter((value) => {
+            if (searchTitle === "") {
+              return value;
+            } else if (
+              value.country.toLowerCase().includes(searchTitle.toLowerCase())
+            ) {
+              return value;
+            }
+          })
+          .map((item) => <h5 key={item.id} >{item.country}.</h5>)
+      )}
+      </div>
+
       <h3>Search Filter</h3>
       <input
         style={{ width: "30%", height: "25px" }}
@@ -86,7 +105,7 @@ function App() {
             if (searchTitle === "") {
               return value;
             } else if (
-              value.name.toLowerCase().includes(searchTitle.toLowerCase())
+              value.country.toLowerCase().includes(searchTitle.toLowerCase())
             ) {
               return value;
             }
