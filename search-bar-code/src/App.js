@@ -37,8 +37,6 @@ import axios from "axios";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
-import Connexion from "./pages/Connexion";
-import Inscription from "./pages/Inscription";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Produits from "./Components/Produits";
 
@@ -51,7 +49,7 @@ function App() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:8000/search/"
+        "https://disease.sh/v3/covid-19/countries"
       );
       setPosts(response.data);
       setLoading(false);
@@ -62,14 +60,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" exact component={Home} />
-          <Route path="/Connexion" exact component={Connexion} />
-          <Route path="/Inscription" exact component={Inscription} />
-        </Routes>
-      </Router>
+      <Navbar />
       <Home />
       <PostForm />
       <Produits />
@@ -96,7 +87,7 @@ function App() {
           })
           .map((item) =>( 
             <div className="card" key={item.id}>
-              <h5>Name : {item.name} | Brand : {item.creator} | Price : {item.price}€</h5>
+              <h5>{item.name}</h5>
               <img className="imgSneakers" src={item.image} alt=""/>
             </div>
           ))
