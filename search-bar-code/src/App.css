@@ -13,11 +13,21 @@ body {
 }
 .card{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .imgSneakers{
-  width: 70%;
+  width: 100%;
   height: 70%;
+}
+.displayItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sneakersDB{
+  width: 30%;
+  height: 30%;
 }
