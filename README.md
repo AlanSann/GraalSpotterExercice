@@ -1,13 +1,29 @@
 # GraalSpotterExercice
-
-python3 -m venv web_env for macOS
-
-python -m venv web_env for windows
-
+```
+python3 -m venv web_env
+```
+for macOS
+``
+python -m venv web_env 
+``
+for windows
+```
 source web_env/scripts/activate 
+```
+for mac0S
+```
+. web_env\scripts\activate 
+```
+for windows
 
-. web_env\scripts\activate
+```
+cd web_env
 
+cd webapi
+
+python manage.py runserver
+
+```
 
 if local database not working : replace it by 
 ```
