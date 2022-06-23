@@ -37,7 +37,7 @@ import axios from "axios";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Produits from "./Components/Produits";
 
 function App() {
@@ -49,7 +49,7 @@ function App() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "https://disease.sh/v3/covid-19/countries"
+        "http://localhost:8000/search/"
       );
       setPosts(response.data);
       setLoading(false);

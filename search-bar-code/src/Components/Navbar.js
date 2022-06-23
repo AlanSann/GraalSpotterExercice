@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Logo from "../assets/graalSpotterLogo11.png";
 import "../styles/Navbar.css";
